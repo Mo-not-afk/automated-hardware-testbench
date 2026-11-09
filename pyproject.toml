@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "automated-hardware-testbench"
+version = "0.1.0"
+description = "Extensible test orchestration with simulated electronics instruments"
+requires-python = ">=3.11"
+dependencies = []
+[project.optional-dependencies]
+serial = ["pyserial>=3.5,<4"]
+test = ["pytest>=8,<10"]
+[project.scripts]
+hwtest = "hwtestbench.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]

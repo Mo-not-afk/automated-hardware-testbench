@@ -1,0 +1,9 @@
+{
+  "name": "regulated-rail-smoke-test",
+  "supply": {"voltage_v": 5.0, "current_limit_a": 0.5},
+  "tests": [
+    {"name": "rail-voltage", "measurement": "voltage_v", "expected": 5.0, "tolerance": 0.05},
+    {"name": "load-current", "measurement": "current_a", "expected": 0.12, "tolerance": 0.02},
+    {"name": "clock-frequency", "measurement": "frequency_hz", "expected": 1000, "tolerance": 5}
+  ]
+}
