@@ -47,7 +47,7 @@ The sample plan sets a 5 V supply and checks rail voltage, load current, and osc
 
 ## Tests
 
-Run `python scripts/run_tests.py` from an uninstalled checkout, or `python -m unittest discover -s tests -v` after installation. Five tests passed locally, covering tolerance pass/fail, plan execution and output disable, JSON/CSV export, plan validation, and SQLite round trips. No real instrument is required.
+Run `python scripts/run_tests.py` from an uninstalled checkout, or `python -m unittest discover -s tests -v` after installation. Six tests passed locally, covering tolerance pass/fail, plan execution and output disable, JSON/CSV export, plan validation, SQLite round trips, and CLI execution. No real instrument is required.
 
 ## Limitations and future work
 

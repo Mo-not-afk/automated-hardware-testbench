@@ -1,4 +1,7 @@
 import json,tempfile,unittest
+from unittest.mock import patch
+from contextlib import redirect_stdout
+from io import StringIO
 from pathlib import Path
 from hwtestbench.instruments import SimulatedInstruments
 from hwtestbench.runner import evaluate,run_plan,export
@@ -26,3 +29,9 @@ class RunnerTests(unittest.TestCase):
         with sqlite3.connect(":memory:") as db:
             run_id=save_report(db,report); loaded=get_report(db,run_id)
             self.assertEqual(loaded["test_plan"],"stored"); self.assertEqual(len(loaded["results"]),1)
+    def test_cli_smoke(self):
+        from hwtestbench.cli import main
+        with tempfile.TemporaryDirectory() as folder:
+            plan=str(Path("examples/basic_test_plan.json").resolve()); out=str(Path(folder)/"run.json"); csv=str(Path(folder)/"run.csv")
+            with patch("sys.argv",["hwtest",plan,"--json",out,"--csv",csv]),redirect_stdout(StringIO()) as output: main()
+            self.assertIn('"passed": true',output.getvalue()); self.assertTrue(Path(out).exists()); self.assertTrue(Path(csv).exists())
